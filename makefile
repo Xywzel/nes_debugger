@@ -54,15 +54,12 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@echo "Compiling $< ..."
-	@mkdir -p $(OBJDIR)
-	@mkdir -p $(OBJDIR)/hardware
-	@mkdir -p $(OBJDIR)/math
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	@echo cleaning
 	find . -name \*.o -type f -delete
 	find . -name \*.d -type f -delete
-	rm -rf $(BINDIR)/$(TARGET)
 	rm -rf $(BINDIR)
 	rm -rf $(OBJDIR)
