@@ -2,10 +2,17 @@
 #include <fstream>
 
 #include "Emulator.h"
+#include "tests/TestMain.h"
 
 int main(int argc, char** argv)
 {
-	if(argc != 2)
+	if(argc == 1)
+	{
+		tests::runTests();
+		return 1;
+	}
+
+	if(argc > 2)
 	{
 		std::cout << "Usage: " << argv[0] << " path/to/rom" << std::endl;
 		return 1;
