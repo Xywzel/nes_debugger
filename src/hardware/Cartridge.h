@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 // 32KB of addressable program memory and
 // 8KB character memory (pattern table)
 

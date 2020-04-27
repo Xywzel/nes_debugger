@@ -1,10 +1,15 @@
 #pragma once
 
+#include <stdint.h>
+
 // Stores a tree component color
 
-class Color
+namespace math
 {
-	uint8_t r = 0;
-	uint8_t g = 0;
-	uint8_t b = 0;
+	class Color
+	{
+		uint8_t r = 0;
+		uint8_t g = 0;
+		uint8_t b = 0;
+	};
 }

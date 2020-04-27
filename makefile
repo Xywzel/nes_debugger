@@ -7,15 +7,20 @@ OBJDIR := obj
 BINDIR := bin
 INCDIR := inc
 
+# Note
+# := Expand when definited, better performance
+# = Expand when used, can addapt to dynamic part
+
 # Output
 TARGET := nes_debugger
 
 # Compiler options
 STD := -std=c++17
 DEBUG := -g
-WARNINGS = -pedantic -Wall -Wextra
-OPTIMIZE = -march=native -O3
-GENDEPS = -MMD
+WARNINGS := -pedantic -Wall -Wextra
+OPTIMIZE := -march=native -O3
+GENDEPS := -MMD
+INCLUDES := -I$(INCDIR) -I$(SRCDIR)
 
 # SDL if needed
 SDL_LIBS = -lSDL2_image -lSDL2_mixer
@@ -34,7 +39,7 @@ SOURCES = $(shell find $(SRCDIR) -type f -name *.cpp)
 OBJECTS = $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.cpp=.o))
 DEPENDENCIES = $(OBJECTS:%.o=%.d)
 
-CFLAGS = $(STD) $(DEBUG) $(WARNINGS) $(GLFW_COMP) $(VUL_COMP) $(GENDEPS)
+CFLAGS = $(STD) $(DEBUG) $(WARNINGS) $(INCLUDES) $(GLFW_COMP) $(VUL_COMP) $(GENDEPS)
 LFLAGS = $(STD) $(WARNINGS) $(GLFW_LINK) $(VUL_LINK)
 
 all: $(BINDIR)/$(TARGET)

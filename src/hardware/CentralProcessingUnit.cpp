@@ -44,14 +44,16 @@ void CentralProcessingUnit::writeMemory(uint16_t address, uint8_t value)
 	}
 	if (address < 0x2008) // PPU registers
 	{
-		int ppuAddress = address - 0x2000;
+		uint16_t ppuAddress = address - 0x2000;
 		if (ppu)
-			ppu->write(ppuAddress);
+			ppu->write(ppuAddress, value);
 		return;
 	}
 	if (address < 0x4000) // PPU registers mirrored every 8 bytes
 	{
-		int ppuAddress = (address - 0x2000) % 0x0008;
+		uint16_t ppuAddress = (address - 0x2000) % 0x0008;
+		if (ppu)
+			ppu->write(ppuAddress, value);
 		return;
 	}
 	if (address < 0x4018) // APU and IO registers
@@ -73,12 +75,14 @@ uint8_t CentralProcessingUnit::readMemory(uint16_t address)
 	{
 		int ppuAddress = address - 0x2000;
 		if (ppu)
-			return ppu->readRegister(ppuAddress);
+			return ppu->read(ppuAddress);
 		return 0;
 	}
 	if (address < 0x4000) // PPU registers mirrored every 8 bytes
 	{
 		int ppuAddress = (address - 0x2000) % 0x0008;
+		if (ppu)
+			return ppu->read(ppuAddress);
 		return 0;
 	}
 	if (address < 0x4018) // APU and IO registers

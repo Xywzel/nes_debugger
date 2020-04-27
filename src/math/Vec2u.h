@@ -1,3 +1,4 @@
+#pragma once
 
 namespace math
 {
@@ -6,5 +7,4 @@ namespace math
 		unsigned int x;
 		unsigned int y;
 	};
-
-};
+}

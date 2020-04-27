@@ -31,6 +31,8 @@ class PictureProcessingUnit
 		void step();
 
 		void dmaCopyToOam(uint8_t oam[256]);
+		void write(uint16_t address, uint8_t data);
+		uint8_t read(uint16_t address);
 	private:
 		uint8_t oam[256];
 		// 256 Bytes of ObjectAttributeMemory
@@ -38,7 +40,7 @@ class PictureProcessingUnit
 		// Tile number and flags (color 2 bits, layer 2 bits, vertical or horisontal flipping)
 		// Supports dirrect copying from CPU as single chunck
 
-		Color pallette[64];
+		math::Color pallette[64];
 		// Color palette with colors from 0x00 to 0x3F (64 colors)
 		// Contains 54 unique colors and multiple blacks
 		// Chorma and luminance signals format for output in practise
