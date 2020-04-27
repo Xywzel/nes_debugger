@@ -36,9 +36,15 @@ class PictureProcessingUnit
 	private:
 		uint8_t oam[256];
 		// 256 Bytes of ObjectAttributeMemory
+		// Also known as SPR-RAM, from sprite RAM.
 		// Storing each sprites x and y coordinates,
 		// Tile number and flags (color 2 bits, layer 2 bits, vertical or horisontal flipping)
 		// Supports dirrect copying from CPU as single chunck
+
+		uint8_t vram[16384];
+		// 16 KiB of Video RAM
+
+		uint16_t writeAddress = 0;
 
 		math::Color pallette[64];
 		// Color palette with colors from 0x00 to 0x3F (64 colors)
