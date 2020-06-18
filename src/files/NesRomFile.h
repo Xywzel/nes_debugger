@@ -8,10 +8,16 @@
 #include <string>
 #include <vector>
 
+enum class ConsoleType;
+
 class NesRomFile
 {
 	public:
 		NesRomFile(std::string filename);
+
+		bool getFlag(uint8_t flag, uint8_t bit);
+		// Returns true if specified bit of specified flag is set
+		// Uses common byte numbering, so flags start at 6
 
 		bool hasCorrectFormatString();
 		bool hasVerticalMirroring();
@@ -20,6 +26,7 @@ class NesRomFile
 		bool hasIgnoreMirroring(); // Usually means four-screen VRAM
 		uint8_t mapperNumber();
 		bool isNesVersionTwo();
+		ConsoleType getConsoleType();
 
 	private:
 		// 16 byte header
