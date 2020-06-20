@@ -15,7 +15,7 @@ namespace tests
 		std::cout << "Persistent Memory: " << (rom.hasPersistentMemory() ? "yes" : "no") << std::endl;
 		std::cout << "Trainer: " << (rom.hasTrainer() ? "yes" : "no") << std::endl;
 		std::cout << "Ignore Mirroring: " << (rom.hasIgnoreMirroring() ? "yes" : "no") << std::endl;
-		std::cout << "Mapper Number: " << std::hex << int(rom.mapperNumber()) << std::dec << std::endl;
+		std::cout << "Mapper Number: " << std::hex << int(rom.getMapperNumber()) << std::dec << std::endl;
 		std::cout << "iNesVersion2: " << (rom.isNesVersionTwo() ? "yes" : "no") << std::endl;
 		std::cout << "Console Type: " << enumToString(rom.getConsoleType())  << std::endl;
 	}
